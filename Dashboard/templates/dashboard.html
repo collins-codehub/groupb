@@ -50,10 +50,16 @@
 
                     <div class="card-actions">
                         <a href="{% url 'update_student' student.id %}" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="{% url 'delete_student' student.id %}"
-                       class="btn btn-sm btn-danger flex-fill delete-btn">
-                            Delete
-                    </a>
+
+                           <form method="POST">
+        action="{% url 'delete_student' student.id %}"
+        onsubmit="return confirm('Confirm Deletion');"
+        style="...">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+
+
+    </form>
 
 
 
@@ -64,7 +70,6 @@
         </div>
 
         {% endfor %}
-
 
     </div>
 
